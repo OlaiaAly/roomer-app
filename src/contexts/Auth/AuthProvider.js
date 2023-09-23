@@ -27,7 +27,7 @@ export const AuthProvider = ({children}) => {
    }
 
 
-   const xlogout = async () => { 
+   const sxlogout = async () => { 
     await api.xlogout();
     setUser(null);
 }
@@ -35,7 +35,7 @@ export const AuthProvider = ({children}) => {
 
 
     return (
-        <AuthContext.Provider value={{user, signin, signout, xlogout}}>
+        <AuthContext.Provider value={{user, signin, signout, sxlogout}}>
             {children}
         </AuthContext.Provider>
     )

@@ -37,8 +37,9 @@ export default function LoginForm() {
     e.preventDefault();
     if(authValues.email && authValues.password){
         // const isLogged = await auth.signin(authValues.email, authValues.password);
-        const res = await auth.sxlogout();
-        console.log(res);
+
+        console.log(auth.sxlogout);
+        const res = await auth.sxlogout()        
         
         // if(isLogged){
         //   navigate('/dashboard', { replace: true });

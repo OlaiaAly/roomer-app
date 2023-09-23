@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost/wdev/mvc/api/v1/'
+    baseURL: 'http://localhost/wdev/api/process/backend/users'
 });
 
 export  const useApi = () => ({
@@ -24,7 +24,7 @@ export  const useApi = () => ({
     xlogout: async () => {
         const response = await api.get();
 
-        // console.log(response.data);
+        console.log(response.data);
         return response.data;
     }
 
