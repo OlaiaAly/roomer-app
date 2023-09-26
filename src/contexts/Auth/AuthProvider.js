@@ -28,8 +28,8 @@ export const AuthProvider = ({children}) => {
 
 
    const xlogout = async () => { 
-    await api.xlogout();
-    setUser(null);
+    return  api.xlogout();
+    
 }
 
 

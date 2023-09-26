@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost/wdev/mvc/api/v1/'
+    baseURL: process.env.REACT_APP_URL_BASE
 });
 
 export  const useApi = () => ({
@@ -22,9 +22,8 @@ export  const useApi = () => ({
         return response.data;
     },
     xlogout: async () => {
-        const response = await api.get();
+        const response = await api.get('/');
 
-        // console.log(response.data);
         return response.data;
     }
 

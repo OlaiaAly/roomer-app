@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import env from "react-dotenv";
+
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -8,6 +10,7 @@ import {AuthContext} from '../../../contexts/Auth/AuthContext';
 
 // components
 import Iconify from '../../../components/iconify';
+
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +31,7 @@ export default function LoginForm() {
     const {value, name} = event.target;
     setAuthValues({
       ...authValues,
-      [name]: value,
+      [name]: value,   
     })
   }
 
@@ -37,15 +40,15 @@ export default function LoginForm() {
     e.preventDefault();
     if(authValues.email && authValues.password){
         // const isLogged = await auth.signin(authValues.email, authValues.password);
-        const res = await auth.sxlogout();
-        console.log(res);
+        const res = await auth.xlogout();
+
+
+      console.log(res);
         
         // if(isLogged){
-        //   navigate('/dashboard', { replace: true });
+          // navigate('/dashboard', { replace: true });
         // }
     }
-
-    console.log(authValues);
   };
   
   return (
