@@ -1,5 +1,8 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
+import { useContext } from 'react';
+
+
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
@@ -33,11 +36,17 @@ import {FinacialTableList} from "./components/pagesComponets/financial";
 // Dwellers - Moradores
 import DwellerIndexPage from "./pages/DwellerIndexPage";
 
+import {AuthContext} from './contexts/Auth/AuthContext';
+
 
 const Private = ({Item}) => {
-  const signed = false;
 
-  return signed === true ? <Item/> : <LoginPage/>;
+  const auth = useContext(AuthContext);
+
+  console.log(auth.logged);
+  // return signed === true ? <Item/> :  <LoginPage/>;
+
+  return auth.logged ? <Item/> :  <Navigate to="/login" replace />;
   
 };
 

@@ -5,14 +5,27 @@ import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({children}) => {
 
-    const [user, setUser] = React.useState();
+    const [user, setUser] = React.useState(null);
+    const [logged, setLogged] = React.useState(false);
 
     const api = useApi();
 
    const signin = async (email , senha) => {
-       const res = await api.signin(email, senha);
-        // setUser({ res.user.name, res.user.email})
-        console.log(user);
+       const resUser = await api.signin(email, senha);
+
+       if(resUser){
+            setUser({
+                'name':resUser.name,
+                'email': resUser.email, 
+                'telephone':resUser.telephone
+            });
+
+            setLogged(true);
+
+            return true;
+        }
+        
+        return false;
    };
     
 
@@ -27,7 +40,7 @@ export const AuthProvider = ({children}) => {
     };
 
     return (
-        <AuthContext.Provider value={{user, signin, logout, xlogout}}>
+        <AuthContext.Provider value={{user, logged,signin, logout, xlogout}}>
             {children}
         </AuthContext.Provider>
     );

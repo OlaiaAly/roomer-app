@@ -39,28 +39,18 @@ export default function LoginForm() {
   const handleClick = async  (e) => {
     e.preventDefault();
     if(authValues.email && authValues.password){
+
         // const isLogged = await auth.signin(authValues.email, authValues.password);
 
-                const isLogged = await auth.signin("tinovambo@gmail.com", "tinovambo@gmail.com");
+        const isLogged = await auth.signin('inaldacumbane@gmal.com', 'inaldacumbane@gmal.com');
 
+       if(isLogged){
+          console.log('logado');
+          navigate('/dashboard', { replace: true });
+       }
 
-          // console.log(authValues);
-  
-
-        // const res = await auth.xlogout()        
-        const res = await auth.xlogout();
-
-
-      console.log(res);
-        
-        // if(isLogged){
-          // navigate('/dashboard', { replace: true });
-        // }
     }
-
-    // console.log(authValues);
   }
-  };
   
   return (
     <>

@@ -8,6 +8,7 @@ const api = axios.create({
         'Accept': 'application/json',
         'Content-Type': 'application/json', 
         'Access-Control-Allow-Origin': 'http://localhost:8000',
+        // 'Authentication': 'Bearer 5|C6ixV0seUvO0uLjK9bnBv1I9zsuftcpPUfuyBN9d4f3cb505'
     }
 
 });
@@ -28,17 +29,21 @@ export  const useApi = () => ({
             // Login...
         });
 
-        const res =  await api.post('/auth/login',
+        const res =  await api.post('/auth/students',
             {email, password}
         );
 
-        if(res.data.credentials){
-
-            return res.data.credentials;
+        if(res && res.status === 201){
+            
+            // GETTING THE TOKEN
+            const token = JSON.stringify(res.data.token);             
+            localStorage.setItem('token_auth', token);      
+            
+            // RETURNING THE USER
+            return (res.data.user);
         }
 
-        return null;
-     
+        return null;     
     },
 
     logout: async () => {
