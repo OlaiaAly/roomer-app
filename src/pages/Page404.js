@@ -18,7 +18,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Page404() {
+export default function Page404(props = []) {
   return (
     <>
       <Helmet>
@@ -28,7 +28,9 @@ export default function Page404() {
       <Container>
         <StyledContent sx={{ textAlign: 'center', alignItems: 'center' }}>
           <Typography variant="h3" paragraph>
-            Sorry, page not found!
+            
+              {/* (props.error? (props.error) : () ) */}
+              Sorry, page not found!
           </Typography>
 
           <Typography sx={{ color: 'text.secondary' }}>

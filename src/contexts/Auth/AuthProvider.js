@@ -2,41 +2,33 @@ import * as React from 'react';
 import { useApi }  from '../../hooks/useApi';
 import { AuthContext } from './AuthContext';
 
+
 export const AuthProvider = ({children}) => {
 
-    const [user, setUser] = React.useState(null);
-
+    const [user, setUser] = React.useState();
 
     const api = useApi();
 
-
- 
-
    const signin = async (email , senha) => {
-        const data = await api.signin(email, senha);
-        if(data.user  && data.token ){
-            setUser(data.token)
-            return true;
-        }
-        return false;
-   } 
+       const res = await api.signin(email, senha);
+        // setUser({ res.user.name, res.user.email})
+        console.log(user);
+   };
+    
 
-   const signout = async () => { 
+   const logout = async () => { 
         await api.logout();
         setUser(null);
-   }
+    };
 
-
-   const xlogout = async () => { 
-    return  api.xlogout();
-    
-}
-
-
+    const xlogout = async () => { 
+        await api.xlogout();
+        setUser(null);
+    };
 
     return (
-        <AuthContext.Provider value={{user, signin, signout, xlogout}}>
+        <AuthContext.Provider value={{user, signin, logout, xlogout}}>
             {children}
         </AuthContext.Provider>
-    )
+    );
 }

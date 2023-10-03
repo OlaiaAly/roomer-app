@@ -1,30 +1,76 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials= true;
+
 const api = axios.create({
-    baseURL: process.env.REACT_APP_URL_BASE
+    baseURL: 'http://localhost:8000/api',  
+    headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': 'http://localhost:8000',
+    }
+
 });
+
+
 
 export  const useApi = () => ({
     validateToken: async (token) => {
-        const response = await api.post('/validate', {token});
+        const response = await api.post('/validate', {token}, {'Access-Control-Allow-Origin' :  '*'});
         return response.data;
     },
+
+    // LOG IN
     signin: async (email, password) => {
-        // console.log(process.env.API_BASE_URL);
-        const response = await api.post('',
+
+
+        await api.get('../sanctum/csrf-cookie').then(response => {
+            // Login...
+        });
+
+        const res =  await api.post('/auth/login',
             {email, password}
         );
 
-        return response.data;
+        if(res.data.credentials){
+
+            return res.data.credentials;
+        }
+
+        return null;
+     
     },
+
     logout: async () => {
         const response = await api.post('/logout');
         return response.data;
     },
+
     xlogout: async () => {
-        const response = await api.get('/');
 
-        return response.data;
+    let data =[];
+        try{
+        // console.log('ALY');
+        // console.log(process.env.REACT_APP_API_BASE_URL);
+        // axios.defaults.withCredentials= true;
+
+        const response = await api.post('/auth/login', JSON.stringify({
+            email:"tinovambo@gmail.com",
+            password:"tinovambo@gmail.com"
+           }));
+            
+        //    const response = await api.get('/users');
+             console.log(response.data);
+             console.log(response.status);
+             console.log(response.statusText);
+
+             data = response;
+             return response.data;
+        }
+        catch(err){
+            console.log(err);
+        }
+       
+        return data;
     }
-
 });

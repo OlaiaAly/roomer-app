@@ -24,7 +24,7 @@ export default function LoginForm() {
 
 
   function initializeAuthValues(){
-    return {email:'', password:''};
+    return { email:'', password:'' };
   }
   
   const onChangeAuthValues = (event) => {
@@ -40,6 +40,14 @@ export default function LoginForm() {
     e.preventDefault();
     if(authValues.email && authValues.password){
         // const isLogged = await auth.signin(authValues.email, authValues.password);
+
+                const isLogged = await auth.signin("tinovambo@gmail.com", "tinovambo@gmail.com");
+
+
+          // console.log(authValues);
+  
+
+        // const res = await auth.xlogout()        
         const res = await auth.xlogout();
 
 
@@ -49,6 +57,9 @@ export default function LoginForm() {
           // navigate('/dashboard', { replace: true });
         // }
     }
+
+    // console.log(authValues);
+  }
   };
   
   return (
