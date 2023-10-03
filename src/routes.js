@@ -34,11 +34,18 @@ import {FinacialTableList} from "./components/pagesComponets/financial";
 import DwellerIndexPage from "./pages/DwellerIndexPage";
 
 
+const Private = ({Item}) => {
+  const signed = false;
+
+  return signed === true ? <Item/> : <LoginPage/>;
+  
+};
+
 export default function Router() {
   const routes = useRoutes([
     {
       path: '/dashboard',
-      element: <DashboardLayout />,
+      element: < Private Item={DashboardLayout} />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },

@@ -21,7 +21,7 @@ export default function LoginForm() {
 
 
   function initializeAuthValues(){
-    return {email:'', password:''};
+    return { email:'', password:'' };
   }
   
   const onChangeAuthValues = (event) => {
@@ -38,16 +38,21 @@ export default function LoginForm() {
     if(authValues.email && authValues.password){
         // const isLogged = await auth.signin(authValues.email, authValues.password);
 
-        console.log(auth.sxlogout);
-        const res = await auth.sxlogout()        
+                const isLogged = await auth.signin("tinovambo@gmail.com", "tinovambo@gmail.com");
+
+
+          // console.log(authValues);
+  
+
+        // const res = await auth.xlogout()        
         
         // if(isLogged){
         //   navigate('/dashboard', { replace: true });
         // }
     }
 
-    console.log(authValues);
-  };
+    // console.log(authValues);
+  }
   
   return (
     <>
